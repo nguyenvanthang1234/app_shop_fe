@@ -1,6 +1,8 @@
 'use client'
+import { Box } from '@mui/material'
 import Head from 'next/head'
-import Button from '@mui/material/Button'
+
+import CustomTextField from 'src/components/text-field'
 
 export default function Home() {
   return (
@@ -11,7 +13,10 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Button variant='contained'>Hello world</Button>
+
+      <Box sx={{ margin: '16px', width: '200px' }}>
+        <CustomTextField label='Multiline' id='outlined-multiline-flexible' />
+      </Box>
     </>
   )
 }
