@@ -27,11 +27,14 @@ import CustomTextField from 'src/components/text-field'
 
 // config
 import { EMAIL_REG, PASSWORD_REG } from 'src/configs/regex'
-import { useState } from 'react'
 
 // Image
 import LoginDark from '../../../../../public/images/login-dark.png'
 import LoginLight from '../../../../../public/images/login-light.png'
+
+// hook
+import { useAuth } from 'src/hooks/useAuth'
+import { useState } from 'react'
 
 type TProps = {}
 
@@ -44,6 +47,9 @@ const LoginPage: NextPage<TProps> = () => {
   // state
   const [showPassword, setShowPassword] = useState(false)
   const [isRemember, setIsRemember] = useState(true)
+
+  // context
+  const { login } = useAuth()
 
   //theme
   const theme = useTheme()
@@ -73,6 +79,9 @@ const LoginPage: NextPage<TProps> = () => {
   })
 
   const onSubmit = (data: { email: string; password: string }) => {
+    if (!Object.keys(errors)?.length) {
+      login({ ...data, rememberMe: isRemember })
+    }
     console.log('data', data)
   }
 
